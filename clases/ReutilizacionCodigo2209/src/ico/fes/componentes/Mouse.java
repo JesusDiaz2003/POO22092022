@@ -11,6 +11,7 @@ package ico.fes.componentes;
 public class Mouse {
     private String marca;
     private String tipo;// oprico o analogico
+    public String getTipo;
 
     public Mouse() {
     }
