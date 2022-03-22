@@ -27,13 +27,14 @@ public class TareaPOO2209 {
         lib1.setAutor(new Autor("Geroge Lucas", 44));
         lib1.setEditorial(new Editorial("Bruguera", 168));
         System.out.println(lib1);
+        lib1.getAutor().promociona();
         
         Pelicula peli1 = new Pelicula();
         peli1.setActor(new Actor("Liam Neeson", 69));
         peli1.setDirector(new Director("George Lucas",77 ));
         peli1.setProductora(new Productora("Lucasflim", "Star Wars: episodio 1 - La amenaza fantasma" ));
         System.out.println(peli1);
-        
+        peli1.getActor().estudia();
     }
     
 }

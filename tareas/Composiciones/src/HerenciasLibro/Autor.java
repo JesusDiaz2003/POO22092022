@@ -40,4 +40,7 @@ public class Autor {
     public String toString() {
         return "Autor{" + "nombre=" + nombre + ", edad=" + edad + '}';
     }
+    public void promociona(){
+        System.out.println(this.nombre+ "promociona el libro");
+    }
 }

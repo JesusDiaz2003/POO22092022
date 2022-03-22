@@ -40,4 +40,7 @@ public class Actor {
     public String toString() {
         return "Actor{" + "nombre=" + nombre + ", edad=" + edad + '}';
     }
+    public void estudia(){
+        System.out.println(this.nombre + "estudia el guion de la pelicula");
+    }
 }
