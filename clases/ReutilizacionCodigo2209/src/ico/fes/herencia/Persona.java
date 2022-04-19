@@ -19,6 +19,9 @@ public class Persona {
         this.nombre = nombre;
         this.edad = edad;
     }
+    public Persona (String var1, int var2, String var4) {
+        System.out.println("Cualquier cosa");
+    }
 
     public int getEdad() {
         return edad;
