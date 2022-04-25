@@ -109,11 +109,7 @@ public class JavaBasico2209 {
             Lista[2] = new Alumno("99999", 2, 7.0f);
             Lista[3] = new Alumno("99999", 2, 8.0f);
             Lista[4] = new Alumno("99999", 2, 6.0f);
-            
-          for (int i = 0; i < Lista.length; i++) {
-            Alumno alumno = Lista[i];
-            System.out.println( alumno.evaluarDesempenio() );
-        }
+       
             System.out.println("con for each");
             for (Alumno alumno :  Lista){
                 System.out.println(alumno.evaluarDesempenio());

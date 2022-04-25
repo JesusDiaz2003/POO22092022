@@ -45,8 +45,18 @@ public class Alumno {
     public void setSemestre(int semestre) {
         this.semestre = semestre;
     }
+
+    @Override
+    public String toString() {
+        return "Alumno{" + "numeroCuenta=" + numeroCuenta + ", semestre=" + semestre + ", promedio=" + promedio + '}';
+    }
     
     
-    
+    public void estudiar ( int minutos) {
+        System.out.println("Estudiando..." + minutos + "minutos");
+    } 
+    public String evaluarDesempenio(){
+       return this.promedio > 8.0f? "Sobresaliente": "Regular"; 
+    }
     
 }
