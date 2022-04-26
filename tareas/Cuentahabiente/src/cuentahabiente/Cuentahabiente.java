@@ -22,6 +22,16 @@ public class Cuentahabiente {
         Miembro[2] = new Clientes(154601463, "Roberto madrigal", 63000.00f);
         Miembro[3] = new Clientes(556521107, "Cristiano Ronaldo",800000.00f);
         Miembro[4] = new Clientes(735658701, "Christian Garcia", 17000.00f);
+        System.out.println(Miembro[0]);
+        Miembro[0].retirarDinero(3300.50f);
+        System.out.println(Miembro[1]);
+        Miembro[0].retirarDinero(4800.00f);
+        System.out.println(Miembro[2]);
+        Miembro[0].retirarDinero(6500.00f);
+        System.out.println(Miembro[3]);
+        Miembro[0].retirarDinero(6000.00f);
+        System.out.println(Miembro[4]);
+        Miembro[0].retirarDinero(1500.00f);
         System.out.println("For each");
         for (Clientes clientes : Miembro){
             System.out.println(clientes.evaluarNivelCliente());

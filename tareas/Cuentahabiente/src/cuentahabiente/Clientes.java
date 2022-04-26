@@ -50,8 +50,8 @@ public class Clientes {
     public String toString() {
         return "Atributos{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", balance=" + balance + '}';
     }
-    public String retirarDinero(float monto){
-        return this.balance > 5000.50f? "Retire sin problemas" : "mejor no retires";
+    public void retirarDinero(float monto){
+        System.out.println("tu monto es de: "+ (this.balance-monto));
     }
     public String evaluarNivelCliente(){
         return this.balance > 50000.00f? "Cliente Premium" : "Cliente Regular";
