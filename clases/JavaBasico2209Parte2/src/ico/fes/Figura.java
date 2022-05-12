@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package ico.fes;
 
 /**
@@ -16,11 +13,6 @@ public interface Figura {
     public static final int TRIANGULO = 3;
     public static final int RECTANGULO = 4;
 
-
-            
-    
-    
-    /*Interface*/
     public abstract float calcularArea();
     
 }
