@@ -1,106 +1,87 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package tareaencriptacion;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.HeadlessException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 /**
  *
  * @author HP
  */
-public class TareaEncriptacion {
-
-   
-    public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+public class TareaEncriptacion extends JFrame{
+ JTextField mensaje;
+    JTextField desplazamiento;
+    JTextField resultado;
+    JLabel mensajeCifrado;
+    JButton boton;
+    String cifrado = "abcdefghijklmnñopqrstuvwxyz";
+    public TareaEncriptacion()throws HeadlessException {
+        setTitle("Cifrado César");
+        setSize(300, 350);
+        setLayout(new FlowLayout(FlowLayout.CENTER));
+        mensaje = new JTextField(20);
+        desplazamiento = new JTextField(5);
+        boton = new JButton("Cifre su texto");
+        boton.setBackground(Color.PINK);
+        resultado = new JTextField(15);
+        resultado.setBackground(Color.PINK);
+        mensaje.setToolTipText("Ingrese el texto a cifrar");
+        mensaje.setBackground(Color.PINK);
+        desplazamiento.setToolTipText("Letras a desplazar");
+        desplazamiento.setBackground(Color.PINK);
+       mensajeCifrado =new JLabel("Mensaje Cifrado");
+       mensajeCifrado.setBackground(Color.PINK);
+       mensajeCifrado.setBounds(450, 70, 200, 500);
+        this.getContentPane().add(mensaje);
+        this.getContentPane().add(desplazamiento);
+        this.getContentPane().add(boton);
+        this.getContentPane().add(resultado);
+         this.getContentPane().add(mensajeCifrado);
+    
+        this.validate();
+        this.setVisible(true);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                System.exit(0);
+            }
+        });
         
-        //obtener nuestro Input por parte del usuario
-        System.out.println("Ingresa un Mensaje");
-        String input = br.readLine().toLowerCase();
-        
-        //saber si quiere encriptar o des-encriptar
-        System.out.println("(1) Encriptar (2)Des-encriptar");
-        String cf = br.readLine().toLowerCase();
-        
-        //arreglo con nuentro vocabulario
-        String v[] = {" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
-        
-        //arreglos dinamicos para nuestros arreglos, para el mensaje encriptado y desencriptado
-        ArrayList<String> inC = new ArrayList();
-        ArrayList<String> out = new ArrayList();
-        
-        //ingresar cada uno de los caracteres en un arreglo
-        for (int i = 0; i < input.length(); i++) {
-            inC.add(input.substring(i, i + 1));
-        }
-
-        /* //comprobar el contenido 
-        for (int i = 0; i < inC.size(); i++) {
-            System.out.println(inC.get(i));
-        }
-         */
-        
-        
-        if (cf.equals("1") || cf.equals("Encriptar")) { //revisar que quiere encriptar
-            for (int i = 0; i < inC.size(); i++) { //ciclo que se repetira el tamano de nuestro input
-                for (int j = 0; j < v.length; j++) { //ciclo que se repetira hasta encontrar un valor igual al caracter del input
-                    if (inC.get(i).equals(v[j])) { //revisar cada uno de los valores
-                        if ((j + 3) > v.length) { //revisar si aplicando el cifrado nos pasamos del tamano del arreglo (nos daria error)
-                            switch (v.length - j) { //calcular la diferencia y despues asigar el valor correspondiente a las distintas diferencias
-                                case 0:
-                                    out.add(v[2]); 
-                                    break;
-                                case 1:
-                                    out.add(v[1]);
-                                    break;
-                                case 2:
-                                    out.add(v[0]);
-                                    break;
-
-                            }
-                        } else { //si no se pasa simplemente agregar 3 al valor de j para sustituir con esa letra
-                            out.add(v[j + 3]);
-                        }
+        this.boton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                String textoCifrado = "";
+                String textoCifrar = mensaje.getText();
+                String despla = desplazamiento.getText();
+                int num = Integer.parseInt(despla);
+                char caracter;
+                try {
+                    textoCifrar = textoCifrar.toLowerCase();
+                    for(int i = 0; i < textoCifrar.length(); i++){
+                    caracter = textoCifrar.charAt(i);
+                    int pos = cifrado.indexOf(caracter);
+                    if(pos == -1){
+                        textoCifrado += caracter;
+                    }else{
+                        textoCifrado += cifrado.charAt((pos + num )% cifrado.length());
                     }
                 }
-            }
-
-            System.out.println("El mensaje secreto es");
-
-        } else if (cf.equals("2") || cf.equals("Des-encriptar")) { //se quiere des-encriptar el mensaje
-            for (int i = 0; i < inC.size(); i++) { //ciclo que se repetira el tamano de nuestro input
-                for (int j = 0; j < v.length; j++) { //ciclo que se repetira hasta encontrar un valor igual al caracter del input
-                    if (inC.get(i).equals(v[j])) { //revisar cada uno de los valores
-                        if (j < 3) { //si es uno de los primeros 3 valores significa que antes nos pasamos
-                            switch (j) { //revisar el valor de j y hacer el proceso inverso "manualmente"
-                                case 0:
-                                    out.add(v[v.length - 3]);
-                                    break;
-                                case 1:
-                                    out.add(v[v.length - 2]);
-                                    break;
-                                case 2:
-                                    out.add(v[v.length - 1]);
-                                    break;
-                            }
-                        } else { //si no es de los primeros 3 caracteres simplemente restar 3 para hacer el cesar
-                            out.add(v[j - 3]);
-                        }
-                    }
+                } catch (Exception ex) {
+                    System.out.println(ex.toString());
                 }
+            resultado.setText(textoCifrado);
             }
-            System.out.println("Tu mensaje cifrado es ");
-        }
-
-        for (int i = 0; i < out.size(); i++) {//imprimir cada uno de los valores del mensaje cifrado o desifrado
-            System.out.print(out.get(i));
-        }
-
+            
+        });
     }
-
+    
 }
+   

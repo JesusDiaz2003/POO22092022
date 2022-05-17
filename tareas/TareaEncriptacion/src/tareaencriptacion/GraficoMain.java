@@ -11,7 +11,7 @@ package tareaencriptacion;
 public class GraficoMain {
 
     public static void main(String[] args) {
-        ventana vs= new ventana();
+      TareaEncriptacion vc = new TareaEncriptacion();
         
     }
 }

@@ -29,23 +29,47 @@ import javax.swing.JTextField;
  */
 public class ventana extends JFrame{
     private JTextField cuadro;
+    private JTextField entrada;
+    private JTextField total;
     private JButton boton;
-    private JLabel resultado;
+    private JLabel mensaje;
+    private JLabel mensajeCifrado;
+    private JLabel desplazar;
+    private JTextField desplazamiento;
     
     public ventana () throws HeadlessException {
         setTitle("Cifrado Cesar");
-        setSize(400, 300);
-        setLayout(new FlowLayout(FlowLayout.CENTER));
-        cuadro = new JTextField(10);
-        
-        boton= new JButton();
-        resultado = new JLabel("respuesta");
-        this.getContentPane().add(cuadro);
+        setSize(700, 700);
+        //setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        //
+        desplazar = new JLabel("Lugares a desplazar: ");
+        desplazar.setBounds(170, 20, 150, 20);
+        desplazamiento = new JTextField(10);
+        desplazamiento.setBounds(300, 20, 150, 20);
+
+        //
+        mensaje = new JLabel("Ingresa un mensaje: ");
+        mensaje.setBounds(50, 50, 200, 50);
+        mensajeCifrado= new JLabel("Mensaje cifrado: ");
+        mensajeCifrado.setBounds(450, 70, 200, 50);
+        entrada = new JTextField(15);
+        entrada.setBounds(15, 100, 200, 200);
+
+        //
+        boton = new JButton("Desplazar");
+        boton.setBounds(300, 150, 80, 80);
+
+       
+        total = new JTextField(15);
+        total.setBounds(450, 100, 200, 200);
+        this.getContentPane().add(desplazar);
+        this.getContentPane().add(desplazamiento);
+        this.getContentPane().add(mensaje);
+        this.getContentPane().add(entrada);
         this.getContentPane().add(boton);
-        boton.setBackground(Color.green);
-        boton.setOpaque(true);
-        boton.setToolTipText("Clic para hacer una accion");
-         this.getContentPane().add(resultado);
+        this.getContentPane().add(total);
+        this.getContentPane().add(mensajeCifrado);
         this.validate();
         this.setVisible(true);
          this.addWindowListener(new WindowAdapter() {
